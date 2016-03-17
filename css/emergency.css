@@ -1,0 +1,19 @@
+html{
+  position:relative;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body #screen{
+  position: fixed;
+  width: 100%;
+  height:100%;
+}
+
+#canvas{
+  position: fixed;
+}
