@@ -7,6 +7,9 @@ var RTM_EVENTS = remote.require('@slack/client').RTM_EVENTS;
 var rtm = null;
 var slackToken = process.env.SLACK_API_TOKEN || '';
 
+const IMG_WIDTH=208
+const IMG_HEIGHT=60
+
 function sleep(ms) {
   return function(func) {
     setTimeout(function() {
@@ -21,11 +24,12 @@ function draw() {
     var image = new Image();
     image.src = 'img/emergency.png';
     image.addEventListener('load', function() {
-        $.each(imagePositions(7, 13).sort(shuffle), function(idx, pos){
-            sleep(10*idx)(function(){
-                context.drawImage(image, pos.x, pos.y);
+        $.each(imagePositions(context.canvas.width/IMG_WIDTH, context.canvas.height/(IMG_HEIGHT*1.5)).sort(shuffle), 
+            function(idx, pos){
+                sleep(10*idx)(function(){
+                    context.drawImage(image, pos.x, pos.y);
+                });
             });
-        });
     }, false);
 }
 
@@ -44,7 +48,7 @@ function imagePositions(width, height) {
     var array = [];
     for(var i=0; i<height; i++) {
         for(var j=0; j<width; j++) {
-          array.push({x: j*208+(i%2)*104, y: i*60});
+          array.push({x: j*IMG_WIDTH+(i%2)*IMG_WIDTH/2, y: i*IMG_HEIGHT});
         }
     }
     return array;
