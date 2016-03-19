@@ -11,6 +11,7 @@ const alertSound = new Audio("data:audio/wav;base64," + alertBase64);
  
 const IMG_WIDTH=208
 const IMG_HEIGHT=60
+const IMG_COVER_RATIO=0.8
 
 function sleep(ms) {
   return function(func) {
@@ -30,7 +31,9 @@ function draw() {
     var image = new Image();
     image.src = 'img/emergency.png';
     image.addEventListener('load', function() {
-        $.each(imagePositions(context.canvas.width/IMG_WIDTH, context.canvas.height/(IMG_HEIGHT*1.5)).sort(shuffle), 
+        // $.each(imagePositions(context.canvas.width/IMG_WIDTH, context.canvas.height/IMG_HEIGHT-2).sort(shuffle),         
+        var images = imagePositions(context.canvas.width/IMG_WIDTH, context.canvas.height/IMG_HEIGHT-2).sort(shuffle);
+        $.each(images.slice(0, images.length*IMG_COVER_RATIO), 
             function(idx, pos){
                 sleep(10*idx)(function(){
                     context.drawImage(image, pos.x, pos.y);
