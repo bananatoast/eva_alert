@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "description": "eva style alerting",
   "main": "main.js",
+  "license": "MIT",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js", 
+    "build": "node build.js"
   },
   "devDependencies": {
-    "electron-prebuilt": "^0.36.11"
+    "electron-prebuilt": "^0.36.11",
+    "electron-packager": "^5.2.1"
   },
   "dependencies": {
     "@slack/client": "^2.2.1"
