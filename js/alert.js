@@ -78,7 +78,11 @@ function startListeningSlack() {
     });    
 }
 
-$(document).ready(function() {    
+$(document).ready(function() {
+    if(!slackToken) {
+      console.error("SLACK_API_TOKEN is required.");
+      window.close();
+    }
     setupScreen();
     startListeningSlack();
 });
