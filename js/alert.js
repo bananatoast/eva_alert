@@ -24,7 +24,12 @@ function sleep(ms) {
 }
 
 function playSound() {
+    alertSound.currentTime = 0;
     alertSound.play();
+}
+
+function stopSound() {
+    alertSound.pause();
 }
 
 function draw() {
@@ -75,6 +80,7 @@ function startListeningSlack() {
             draw();
         } else if (message.text.match(/ok/i)) {
             console.log("clean:" + message.text);
+            stopSound();
             clean();
         }
     });    
