@@ -31,7 +31,6 @@ function draw() {
     var image = new Image();
     image.src = 'img/emergency.png';
     image.addEventListener('load', function() {
-        // $.each(imagePositions(context.canvas.width/IMG_WIDTH, context.canvas.height/IMG_HEIGHT-2).sort(shuffle),         
         var images = imagePositions(context.canvas.width/IMG_WIDTH, context.canvas.height/IMG_HEIGHT-2).sort(shuffle);
         $.each(images.slice(0, images.length*IMG_COVER_RATIO), 
             function(idx, pos){
@@ -66,6 +65,7 @@ function imagePositions(width, height) {
 function startListeningSlack() {
     rtm = new RtmClient(slackToken, {logLevel: 'info'});
     rtm.start();
+    console.log("listening to " + slackToken);
     rtm.on(RTM_EVENTS.MESSAGE, function (message) {
         if(message.text.match(/critical/i)) {
             console.log("critical:" + message.text);
